@@ -75,6 +75,13 @@ const update_list = async (query) => {
 	const queries = Array.from(query.trim());
 	let results = [];
 
+	// Update url
+	if (history.pushState) {
+		const param = query && queries.length > 0 ? '?q='+encodeURIComponent(query) : '';
+		const newurl = window.location.protocol + "//" + window.location.host + window.location.pathname + param;
+		window.history.pushState({path:newurl},'',newurl);
+	}
+
 	if (query && queries.length > 0) {
 		for (let i = 0; i < list.length; i++) {
 			if (queries.length > 1) {
@@ -109,3 +116,11 @@ q.addEventListener('input', event => {
 });
 
 create_list();
+
+// Restore query from url
+const urlParams = new URLSearchParams(window.location.search);
+const urlQ = urlParams.get('q');
+if (urlQ) {
+	q.value = urlQ;
+	update_list(urlQ);
+}
