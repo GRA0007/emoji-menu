@@ -63,7 +63,7 @@ const create_list = async () => {
 	});
 
 	// Set random favicon
-	const favicon = document.createElement('link');
+	const favicon = document.querySelector('link[rel="icon"]') || document.createElement('link');
 	favicon.type = 'image/png';
 	favicon.rel = 'icon';
 	let icon = list[Math.floor(Math.random() * list.length)].em;

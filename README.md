@@ -1,3 +1,5 @@
+<img src="menu.png" width="100px" height="100px" />
+
 # Emoji Menu
 
 This is a searchable catalogue of all known emoji kitchen combos available on Google's keyboard: Gboard.

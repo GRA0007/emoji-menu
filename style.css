@@ -23,6 +23,10 @@ nav {
 	padding: 20px;
 	text-align: center;
 }
+nav img {
+	height: 100px;
+	width: 100px;
+}
 h1 {
 	margin: 0 0 10px;
 	font-size: 1.2rem;
@@ -37,6 +41,10 @@ nav .description {
 
 header {
 	padding: 20px;
+	position: sticky;
+	top: 0;
+	z-index: 100;
+	background-color: inherit;
 }
 header form {
 	display: flex;
