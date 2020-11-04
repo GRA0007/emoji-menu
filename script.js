@@ -7,6 +7,18 @@ const main = document.querySelector('main');
 let list = [];
 
 const create_list = async () => {
+	let observer;
+	if ("IntersectionObserver" in window) {
+		observer = new IntersectionObserver((entries, observer) => {
+			entries.forEach(entry => {
+				if (entry.isIntersecting) {
+					entry.target.src = entry.target.dataset.src;
+					observer.unobserve(entry.target);
+				}
+			});
+		});
+	}
+
 	emoji.forEach(e => {
 		const em = `u${e[0]}_u${e[1]}`;
 		const name = `${String.fromCodePoint(parseInt(e[0], 16))} + ${String.fromCodePoint(parseInt(e[1], 16))}`;
@@ -14,7 +26,14 @@ const create_list = async () => {
 		div.id = em;
 		div.title = name;
 		const img = document.createElement('img');
-		img.src = `./emoji/${em}.png`;
+		if ("IntersectionObserver" in window && observer) {
+			img.dataset.src = `./emoji/${em}.png`;
+			img.src = "data:image/svg+xml,%3Csvg viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cstyle%3E .e %7B font-size: 20px; %7D %3C/style%3E%3Ctext x='40' y='55' class='e'%3E⌛%3C/text%3E%3C/svg%3E";
+			img.classList.add('loading');
+			observer.observe(img);
+		} else {
+			img.src = `./emoji/${em}.png`;
+		}
 		img.alt = name;
 		const label = document.createElement('label');
 		label.appendChild(document.createTextNode(name));
