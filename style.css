@@ -1,0 +1,112 @@
+:root {
+	--color-black: #000;
+	--color-white: #FFF;
+}
+@media (prefers-color-scheme: dark) {
+	:root {
+		--color-black: #DDD;
+		--color-white: #333;
+	}
+}
+
+body {
+	margin: 0;
+	background-color: var(--color-white);
+	color: var(--color-black);
+	font-family: sans-serif;
+}
+a {
+	color: inherit;
+}
+
+nav {
+	padding: 20px;
+	text-align: center;
+}
+h1 {
+	margin: 0 0 10px;
+	font-size: 1.2rem;
+	font-weight: bold;
+}
+nav .description {
+	margin: 0;
+	font-size: .9rem;
+	opacity: .7;
+	line-height: 1.4em;
+}
+
+header {
+	padding: 20px;
+}
+header form {
+	display: flex;
+	align-items: stretch;
+	justify-content: center;
+	gap: 8px;
+	font-size: 1.2rem;
+}
+header input {
+	font: inherit;
+	color: inherit;
+	padding: 10px;
+	border: 2px solid var(--color-black);
+	border-radius: 3px;
+	background-color: inherit;
+}
+::placeholder {
+	color: inherit;
+	opacity: .5;
+}
+header button {
+	font: inherit;
+	padding: 0 10px;
+	border: 2px solid var(--color-black);
+	border-radius: 3px;
+	background-color: var(--color-black);
+	cursor: pointer;
+}
+
+main {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+	grid-gap: 12px 20px;
+	padding: 20px;
+}
+main div {
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: center;
+	padding: 10px;
+	border-radius: 10px;
+	border: 2px solid transparent;
+	box-sizing: border-box;
+	transition: box-shadow .3s, transform .3s, border-color .3s;
+}
+main div.hidden {
+	display: none;
+}
+main div:hover, main div:focus {
+	box-shadow: 0 0 10px 0 rgba(120,120,120,.8);
+	transform: translateY(-3px);
+	border-color: var(--color-black);
+}
+main div img {
+	width: 100px;
+	height: 100px;
+}
+main div label {
+	font-size: 1.5rem;
+	display: block;
+	margin-top: 4px;
+}
+
+
+footer {
+	padding: 20px;
+	text-align: center;
+}
+footer img {
+	height: 1em;
+	width: 1em;
+}
