@@ -21,7 +21,7 @@ const create_list = async () => {
 
 	emoji.forEach(e => {
 		const em = `u${e[0]}_u${e[1]}`;
-		const name = `${String.fromCodePoint(parseInt(e[0], 16))} + ${String.fromCodePoint(parseInt(e[1], 16))}`;
+		const name = `${String.fromCodePoint(parseInt(e[0], 16))}\ufe0f + ${String.fromCodePoint(parseInt(e[1], 16))}\ufe0f`;
 		const div = document.createElement('div');
 		div.id = em;
 		div.title = name;
@@ -39,6 +39,22 @@ const create_list = async () => {
 		label.appendChild(document.createTextNode(name));
 		div.appendChild(img);
 		div.appendChild(label);
+		if (navigator.clipboard) {
+			div.addEventListener('click', () => {
+				fetch(`./emoji/${em}.png`)
+					.then(res => res.blob())
+					.then(blob => {
+						navigator.clipboard.write([
+							new ClipboardItem({
+								'image/png': blob
+							})
+						]);
+						div.classList.add('copied');
+						window.setTimeout(() => div.classList.remove('copied'), 1000);
+					})
+					.catch(error => console.error(error))
+			});
+		}
 		list.push({
 			em: e,
 			el: div,

@@ -81,6 +81,7 @@ main div {
 	border-radius: 10px;
 	border: 2px solid transparent;
 	box-sizing: border-box;
+	position: relative;
 	transition: box-shadow .3s, transform .3s, border-color .3s;
 }
 main div.hidden {
@@ -90,6 +91,28 @@ main div:hover, main div:focus {
 	box-shadow: 0 0 10px 0 rgba(120,120,120,.8);
 	transform: translateY(-3px);
 	border-color: var(--color-black);
+}
+main div:after {
+	content: 'Copied!';
+	position: absolute;
+	top: 0;
+	left: 0;
+	border-radius: 6px;
+	z-index: 10;
+	height: 100%;
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background: var(--color-black);
+	color: var(--color-white);
+	visibility: hidden;
+	opacity: 0;
+	transition: visibility .2s, opacity .2s;
+}
+main div.copied:after {
+	opacity: .8;
+	visibility: visible;
 }
 main div img {
 	width: 100px;
