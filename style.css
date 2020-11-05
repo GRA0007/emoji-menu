@@ -90,6 +90,7 @@ main div {
 	border: 2px solid transparent;
 	box-sizing: border-box;
 	position: relative;
+	user-select: none;
 	transition: box-shadow .3s, transform .3s, border-color .3s;
 }
 main div.hidden {
@@ -102,6 +103,7 @@ main div:hover, main div:focus {
 }
 main div:after {
 	content: 'Copied!';
+	font-weight: bold;
 	position: absolute;
 	top: 0;
 	left: 0;
@@ -119,7 +121,7 @@ main div:after {
 	transition: visibility .2s, opacity .2s;
 }
 main div.copied:after {
-	opacity: .8;
+	opacity: .9;
 	visibility: visible;
 }
 main div img {
